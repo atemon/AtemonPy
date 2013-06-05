@@ -51,5 +51,10 @@ class APIResourceNotFound(ResourceNotFound):
 
 
 class APIMethodNotAllowed(MethodNotAllowed):
-    api_code = 104
+    api_code = 103
     api_message = "API method not allowed"
+
+
+class InvalidOutput(InternalServerError):
+    api_code = 105
+    api_message = "Invalid output format"

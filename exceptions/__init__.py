@@ -35,5 +35,6 @@ from .api import (APIException,
                   InputValidationError,
                   AuthenticationRequired,
                   APIResourceNotFound,
-                  APIMethodNotAllowed
+                  APIMethodNotAllowed,
+                  InvalidOutput
                   )

@@ -20,4 +20,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+import simplejson
+
 from api import BaseResponse
+from ..exceptions import BasicException, InvalidOutput
+from ..lib import FixedDictionary
+
+def jsonified_response(f):
+    def wrapper(*args, **kwargs):
+        rv = f(*args, **kwargs)
+        try:
+            if isinstance(rv, FixedDictionary):
+                return rv.jsonify()
+            else:
+                try:
+                    return simplejson.dump()
+                except:
+                    raise
+        except BasicException as be:
+            return be.jsonify()
+        except Exception as e:
+            raise e
+
+    return wrapper
